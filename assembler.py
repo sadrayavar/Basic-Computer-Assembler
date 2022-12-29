@@ -66,12 +66,9 @@ def firstPass():
         if isLabel:
             symbolTable.append([line[0:3], lineAddress])
             lineAddress += 1
-            continue
         else:
             if line[0:3] == "ORG":
                 lineAddress = int(line[4:])
-                lineAddress += 1
-                continue
             else:
                 if line[0:3] == "END":
                     secondPass()
@@ -130,7 +127,7 @@ def secondPass():
                         output += zeroBase[i]
 
                     outFile.write(str(bin(lineAddress))[2:] + '\t'+output+'\n')
-                lineAddress += 1
+                    lineAddress += 1
         else:
             # Check MRI
             isMRI = False
